@@ -2,7 +2,7 @@
 
 int main (int argc, char **argv)
 {
-    printf("|%%|", 123456789);
+    printf("|%15d|", 123456789);
 
     return (0);
 }
