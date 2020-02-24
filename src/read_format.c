@@ -12,29 +12,43 @@
 
 #include "ft_printf.h"
 
-int     read_format(int fd, char *buf, const char *format, va_list ap)
+void    declare_put_functions(t_put_func *put_funcs)
 {
-    t_buff_manager man;
+    put_funcs[0] = NULL; /*c*/
+    put_funcs[1] = NULL; /*s*/
+    put_funcs[2] = NULL; /*p*/
+    put_funcs[3] = NULL; /*d*/
+    put_funcs[4] = NULL; /*i*/
+    put_funcs[5] = NULL; /*u*/
+    put_funcs[6] = NULL; /*x*/
+    put_funcs[7] = NULL; /*X*/
+    put_funcs[8] = NULL; /*%*/
+}
 
-    man.total_count = 0;
-    man.form_cur = -1;
-    man.buf_cur = -1;
-    man.fd = fd;
-    man.buf = buf;
+int     read_format(t_buff_manager man, const char *format, va_list ap)
+{
+    t_put_func put_functions[9];
+
+    declare_put_functions(put_functions);
     while (format[++man.form_cur])
     {
-        if (fd != -2 && (format[man.form_cur] == '\n' || man.buf_cur >= FT_PRINTF_BUFF_SIZE))
+        if (man.fd != -2 
+            && (format[man.form_cur] == '\n'
+            || man.buf_cur >= man.buf_size))
         {
             man.total_count += man.buf_cur;
             man.buf_cur = 0;
-            ft_putstrf_fd(buf, fd);
+            ft_putstrf_fd(man.buf, man.fd);
         }
         if (format[man.form_cur] == '%')
-            man = read_flags(format, man, ap);
+            man = read_flags(format, man, ap, put_functions);
         else
-            buf[++man.buf_cur] = format[man.buf_cur];
+        {
+            man.buf_cur++;
+            man.buf[man.buf_cur] = format[man.buf_cur];
+        }
     }
-    buf[man.buf_cur] = '\0';
-    fd == -2 ? : ft_putstrf_fd(buf, fd);
+    man.buf[man.buf_cur] = '\0';
+    ft_putstrf_fd(man.buf, man.fd);
     return (man.total_count + man.buf_cur);
 }

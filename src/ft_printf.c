@@ -14,31 +14,52 @@
 
 int     ft_printf(const char *format, ...)
 {
-    va_list     ap;
-    char        print_buf[FT_PRINTF_BUFF_SIZE + 1];
+    va_list         ap;
+    char            print_buf[FT_PRINTF_BUFF_SIZE + 1];
+    t_buff_manager  man;
 
     va_start(ap, format);
     print_buf[0] = '\0';
     print_buf[FT_PRINTF_BUFF_SIZE] = '\0';
-    return (read_format(1, print_buf, format, ap));
+    man.total_count = 0;
+    man.form_cur = -1;
+    man.buf_cur = -1;
+    man.fd = 1;
+    man.buf = print_buf;
+    man.buf_size = FT_PRINTF_BUFF_SIZE;
+    return (read_format(man, format, ap));
 }
 
 int     ft_dprintf(int fd, const char *format, ...)
 {
-    va_list     ap;
-    char        print_buf[FT_PRINTF_BUFF_SIZE + 1];
+    va_list         ap;
+    char            print_buf[FT_PRINTF_BUFF_SIZE + 1];
+    t_buff_manager  man;
 
     va_start(ap, format);
     print_buf[0] = '\0';
     print_buf[FT_PRINTF_BUFF_SIZE] = '\0';
-    return (read_format(fd, print_buf, format, ap));
+    man.total_count = 0;
+    man.form_cur = -1;
+    man.buf_cur = -1;
+    man.fd = fd;
+    man.buf = print_buf;
+    man.buf_size = FT_PRINTF_BUFF_SIZE;
+    return (read_format(man, format, ap));
 }
 
 int     ft_sprintf(char *str, const char *format, ...)
 {
     va_list     ap;
+    t_buff_manager man;
 
     va_start(ap, format);
     str[0] = '\0';
-    return (read_format(-2, str, format, ap));
+    man.total_count = 0;
+    man.form_cur = -1;
+    man.buf_cur = -1;
+    man.fd = -2;
+    man.buf = str;
+    man.buf_size = FT_PRINTF_BUFF_SIZE;
+    return (read_format(man, format, ap));
 }

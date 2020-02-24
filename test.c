@@ -3,6 +3,6 @@
 
 int main (int argc, char **argv)
 {
-    printf("qqqq  %0-20v qqqq", "caca");
+    printf("qqqq  %040.20f qqqq", 69.2f);
     return (0);
 }
