@@ -3,20 +3,23 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
+#    By: ede-thom <ede-thom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/16 17:26:10 by dhorvill          #+#    #+#              #
-#    Updated: 2019/12/22 17:08:24 by marvin           ###   ########.fr        #
+#    Updated: 2020/02/23 17:46:26 by ede-thom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		=	src/ft_printf.c\ 
+SRCS		=	src/ft_printf.c\
+				src/read_format.c\
+				src/read_flags.c\
+				src/utils.c\
 
 
 MKDIR_P		=	mkdir -p
 RM			=	rm -f
 
-NAME		=	miniRT
+NAME		=	libftprintf.a
 
 # **************************************************************************** #
 
@@ -48,8 +51,10 @@ CYAN		=	\033[0;36m
 RESET		=	\033[0m
 # **************************************************************************** #
 CFLAGS		=	-Wall -Wextra -Werror
+ARFLAGS		=	-crs
 
 CC			=	gcc
+AR			=	ar
 
 
 all:			${NAME}
@@ -59,9 +64,9 @@ $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c $(INC_DIR)/
 				@$(CC) $(CFLAGS) -c -o $@ $< $(INC)
 				@printf "$(CYAN)Compiling $(MAGENTA)$<$(RESET)\r"
 
-$(NAME):		$(LFT_RULE) $(OBJS)
+$(NAME):		$(OBJS)
 				@printf "$(CYAN)Done creating $(NAME) object files!\n$(RESET)"
-				@$(CC) $(CFLAGS) $(OBJS) -o $@ $(INC) $(LIB) 
+				$(AR) $(ARFLAGS) $(NAME) $(OBJS)
 				@echo "$(CYAN)Created $(GREEN)$(NAME)$(CYAN)!! $(RESET)"
 
 $(LFT_RULE):
@@ -69,17 +74,17 @@ $(LFT_RULE):
 
 clean: 
 				@${RM} ${OBJS}
+				@rmdir $(OBJ_DIR)
 				@echo "$(CYAN)TIDY UP $(RED)pls$(RESET)"
 
 fclean:			clean
 				@${RM} ${NAME}
-				@make -C $(LFT_PATH) fclean
 				@echo "$(CYAN)Everything is $(RED)c $(YELLOW)l $(GREEN)e $(CYAN)a $(MAGENTA)n $(RESET)"
 				
-re:				re-libft fclean all
+re:				fclean all
 
-re-libft:		
-				@make -C $(LFT_PATH) re
+test:			all
+				$(CC) test.c  $(OBJS) -I$(INC_DIR)
 
 together:		all
 				@echo "$(CYAN)"

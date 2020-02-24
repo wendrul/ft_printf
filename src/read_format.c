@@ -14,27 +14,27 @@
 
 int     read_format(int fd, char *buf, const char *format, va_list ap)
 {
-    int     cnt;
-    int     i;
-    int     j;
+    t_buff_manager man;
 
-    cnt = 0;
-    i = -1;
-    j = -1;
-    while (format[++i])
+    man.total_count = 0;
+    man.form_cur = -1;
+    man.buf_cur = -1;
+    man.fd = fd;
+    man.buf = buf;
+    while (format[++man.form_cur])
     {
-        if (fd != -2 && (format[i] == '\n' || j >= FT_PRINTF_BUFF_SIZE))
+        if (fd != -2 && (format[man.form_cur] == '\n' || man.buf_cur >= FT_PRINTF_BUFF_SIZE))
         {
-            cnt += j;
-            j = 0;
+            man.total_count += man.buf_cur;
+            man.buf_cur = 0;
             ft_putstrf_fd(buf, fd);
         }
-        if (format[i] == '%')
-            i += read_flags(&format[i], &j, buf, fd, ap);
+        if (format[man.form_cur] == '%')
+            man = read_flags(format, man, ap);
         else
-            buf[++j] = format[i];
+            buf[++man.buf_cur] = format[man.buf_cur];
     }
-    buf[j] = '\0';
-    fd != -2 ? ft_putstrf_fd(buf, fd): (void)fd ;
-    return (cnt + j);
+    buf[man.buf_cur] = '\0';
+    fd == -2 ? : ft_putstrf_fd(buf, fd);
+    return (man.total_count + man.buf_cur);
 }
