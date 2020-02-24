@@ -15,7 +15,7 @@
 
 # include <stdarg.h>
 # include <string.h>
-//# include <unistd.h>
+# include <unistd.h>
 
 # define FT_PRINTF_BUFF_SIZE 4096
 # define FT_PRINTF_PADDING 100
@@ -25,7 +25,7 @@ typedef struct  s_flag_mod
         int     zero_padding;
         int     left_adjust;
         int     precision;
-        int     padding;
+        int     width;
 }               t_flag_mod;
 
 typedef struct  s_buff_manager
@@ -45,10 +45,12 @@ int             ft_iswhitespace(char c);
 size_t          ft_strlen(const char *s);
 int	        ft_indexof(char needle, const char *hay);
 
-
+t_buff_manager  ft_fflush(t_buff_manager man);
 int             ft_printf(const char *format, ...);
 int             read_format(t_buff_manager man, const char *format, va_list ap);
 void            ft_putstrf_fd(char *str, int fd);
 t_buff_manager  read_flags(const char *format, t_buff_manager man, va_list ap, t_put_func *put_funcs);
+
+t_buff_manager  put_c(t_flag_mod flags, t_buff_manager man, va_list ap);
 
 #endif

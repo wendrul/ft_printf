@@ -25,6 +25,7 @@ int     flag_atoi(t_buff_manager man, int *cur)
     return (nb);
 
 }
+#include <stdio.h>
 
 t_buff_manager     read_flags(const char *format, t_buff_manager man, va_list ap, t_put_func *put_funcs)
 {
@@ -35,6 +36,7 @@ t_buff_manager     read_flags(const char *format, t_buff_manager man, va_list ap
     flags.left_adjust = 0;
     flags.zero_padding = 0;
     flags.precision = 0;
+    man.form_cur++;
     old_cursor = man.form_cur;
     if (format[man.form_cur] == '0' || format[man.form_cur] == '-')
     {
@@ -48,21 +50,20 @@ t_buff_manager     read_flags(const char *format, t_buff_manager man, va_list ap
         flags.zero_padding = format[man.form_cur] == '0';
         man.form_cur++;
     }
-    flags.padding = flag_atoi(man, &man.form_cur);
+    flags.width = flag_atoi(man, &man.form_cur);
     if (format[man.form_cur] == '.')
     {
         if (format[man.form_cur + 1] == '*')
             flags.precision = -1;
         else
             flags.precision = flag_atoi(man, &man.form_cur);
-        
     }
     if ((func_number = ft_indexof(format[man.form_cur], "cspdiuxX%")) != -1)
-        return (put_funcs[func_number](flags, man, ap));    // should return the updated manager
+        return (put_funcs[func_number](flags, man, ap));    //should return the updated manager
     else
     {
         man.buf[old_cursor] = '%';
         man.form_cur = old_cursor;
         return (man);
-    } 
+    }
 }

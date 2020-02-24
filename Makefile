@@ -6,7 +6,7 @@
 #    By: ede-thom <ede-thom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/16 17:26:10 by dhorvill          #+#    #+#              #
-#    Updated: 2020/02/23 17:46:26 by ede-thom         ###   ########.fr        #
+#    Updated: 2020/02/24 22:25:59 by ede-thom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,9 @@ SRCS		=	src/ft_printf.c\
 				src/read_format.c\
 				src/read_flags.c\
 				src/utils.c\
+				src/common.c\
+
+SRCS		+=	src/put_c.c
 
 
 MKDIR_P		=	mkdir -p
