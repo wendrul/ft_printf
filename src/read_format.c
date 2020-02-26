@@ -33,20 +33,20 @@ int     read_format(t_buff_manager man, const char *format, va_list ap)
     while (format[++man.form_cur])
     {
         if (man.fd != -2 
-                && (format[man.form_cur] == '\n'
+                && (man.buf[man.buf_cur] == '\n'
                 || man.buf_cur >= man.buf_size))
         {
-            ft_fflush(man);
+            man = ft_fflush(man);
         }
         if (format[man.form_cur] == '%')
             man = read_flags(format, man, ap, put_functions);
         else
         {
             man.buf_cur++;
-            man.buf[man.buf_cur] = format[man.buf_cur];
+            man.buf[man.buf_cur] = format[man.form_cur];
         }
     }
-    man.buf[man.buf_cur] = '\0';
+    man.buf[man.buf_cur + 1] = '\0';
     ft_putstrf_fd(man.buf, man.fd);
     return (man.total_count + man.buf_cur);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ede-thom <ede-thom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 20:36:20 by ede-thom          #+#    #+#             */
-/*   Updated: 2020/02/24 17:58:40 by marvin           ###   ########.fr       */
+/*   Updated: 2020/02/25 23:31:21 by ede-thom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_iswhitespace(char c)
 size_t	ft_strlen(char const *str)
 {
 	register char *cur;
-
+	
 	cur = (char *)str;
 	while (*cur)
 		cur++;
