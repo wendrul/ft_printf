@@ -48,7 +48,7 @@ int     ft_dprintf(int fd, const char *format, ...)
     return (read_format(man, format, ap));
 }
 
-int     ft_sprintf(char *str, const char *format, ...)
+int     ft_sprintf(char *str, int size, const char *format, ...)
 {
     va_list     ap;
     t_buff_manager man;
@@ -60,6 +60,6 @@ int     ft_sprintf(char *str, const char *format, ...)
     man.buf_cur = -1;
     man.fd = -2;
     man.buf = str;
-    man.buf_size = FT_PRINTF_BUFF_SIZE;
+    man.buf_size = size;
     return (read_format(man, format, ap));
 }

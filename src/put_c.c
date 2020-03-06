@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-t_buff_manager  put_c2(t_flag_mod flags, t_buff_manager man, char c)
+t_buff_manager  put_c2( t_buff_manager man, t_flag_mod flags, char c)
 {
     int     i;
     char    pad;
@@ -36,9 +36,10 @@ t_buff_manager  put_c2(t_flag_mod flags, t_buff_manager man, char c)
 
 t_buff_manager  put_c(t_flag_mod flags, t_buff_manager man, va_list ap)
 {
-    char c;
+    char c[2];
 
-    c = (char)va_arg(ap, int);
+    c[1] = '\0';
+    c[0] = (char)va_arg(ap, int);
     if (flags.width == -1)
         flags.width = va_arg(ap, int);
     if (flags.precision == -1)
@@ -46,6 +47,6 @@ t_buff_manager  put_c(t_flag_mod flags, t_buff_manager man, va_list ap)
     if (man.buf_cur > man.buf_size - 1 || flags.width > man.buf_size - man.buf_cur)
        man = ft_fflush(man);
     if (flags.width > man.buf_size)
-        return (big_load_handler(man, flags, ))
-    return (put_c2(flags, man, c));
+        return (big_conversion(man, flags, c));
+    return (normal_conversion(man, flags, c));
 }

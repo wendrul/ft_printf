@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ede-thom <ede-thom@student.42.fr>          +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/16 17:26:10 by dhorvill          #+#    #+#              #
-#    Updated: 2020/02/24 22:25:59 by ede-thom         ###   ########.fr        #
+#    Updated: 2020/03/06 20:34:30 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ SRCS		=	src/ft_printf.c\
 				src/utils.c\
 				src/common.c\
 
-SRCS		+=	src/put_c.c
+SRCS		+=	src/put_c.c\
+				src/put_s.c
 
 
 MKDIR_P		=	mkdir -p

@@ -15,7 +15,7 @@
 void    declare_put_functions(t_put_func *put_funcs)
 {
     put_funcs[0] = put_c; /*c*/
-    put_funcs[1] = NULL; /*s*/
+    put_funcs[1] = put_s; /*s*/
     put_funcs[2] = NULL; /*p*/
     put_funcs[3] = NULL; /*d*/
     put_funcs[4] = NULL; /*i*/

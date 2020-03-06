@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ede-thom <ede-thom@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 20:36:20 by ede-thom          #+#    #+#             */
-/*   Updated: 2020/02/25 23:31:21 by ede-thom         ###   ########.fr       */
+/*   Updated: 2020/03/06 19:32:23 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void    ft_putstrf_fd(char *str, int fd)
         write(fd, str, ft_strlen(str));
 }
 
-int	ft_iswhitespace(char c)
+int		ft_iswhitespace(char c)
 {
 	return (c == '\f' || c == '\t' ||
 		c == '\n' || c == '\r' ||
@@ -35,7 +35,7 @@ size_t	ft_strlen(char const *str)
 	return (cur - str);
 }
 
-int	ft_indexof(char needle, const char *hay)
+int		ft_indexof(char needle, const char *hay)
 {
 	int i;
 
@@ -44,4 +44,12 @@ int	ft_indexof(char needle, const char *hay)
 		if (hay[i] == needle)
 			return (i);
 	return (-1);
+}
+
+int		ft_max(int a, int b)
+{
+	if (a > b)
+		return (a);
+	else
+		return (b);
 }

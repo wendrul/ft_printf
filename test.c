@@ -3,8 +3,7 @@
 
 int main (int argc, char **argv)
 {
-    printf   ("Hello This is a test for-%20s printf!\n", NULL);
-
-    ft_printf("Hello This is a test for-%s printf!\n", "sss");
+    printf   ("Hello This is a test for-%4097s printf!\n", "Hello");
+    ft_printf("Hello This is a test for-%4097s printf!\n", "Hello");
     return (0);
 }
