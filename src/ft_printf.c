@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ede-thom <ede-thom@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ede-thom <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/11 20:33:28 by ede-thom          #+#    #+#             */
-/*   Updated: 2020/01/11 20:33:28 by ede-thom         ###   ########.fr       */
+/*   Created: 2020/03/09 12:13:03 by ede-thom          #+#    #+#             */
+/*   Updated: 2020/03/09 12:14:05 by ede-thom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int     ft_printf(const char *format, ...)
+int		ft_printf(const char *format, ...)
 {
     va_list         ap;
     char            print_buf[FT_PRINTF_BUFF_SIZE + 1];
@@ -30,7 +30,7 @@ int     ft_printf(const char *format, ...)
     return (read_format(man, format, ap));
 }
 
-int     ft_dprintf(int fd, const char *format, ...)
+int		ft_dprintf(int fd, const char *format, ...)
 {
     va_list         ap;
     char            print_buf[FT_PRINTF_BUFF_SIZE + 1];
@@ -48,7 +48,7 @@ int     ft_dprintf(int fd, const char *format, ...)
     return (read_format(man, format, ap));
 }
 
-int     ft_sprintf(char *str, int size, const char *format, ...)
+int		ft_sprintf(char *str, int size, const char *format, ...)
 {
     va_list     ap;
     t_buff_manager man;

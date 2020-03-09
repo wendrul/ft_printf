@@ -6,7 +6,7 @@
 /*   By: ede-thom <ede-thom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 01:46:42 by ede-thom          #+#    #+#             */
-/*   Updated: 2020/03/09 11:44:07 by ede-thom         ###   ########.fr       */
+/*   Updated: 2020/03/09 12:04:04 by ede-thom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ long int	ft_pow(int nb, int pow)
 		return (nb * ft_pow(nb, pow - 1));
 }
 
-static int     what_pow(unsigned int nb, int b)
+static int	what_pow(unsigned int nb, int b)
 {
 	int			pow;
 
@@ -61,12 +61,12 @@ static void	fill_ret(int size, char *ret, unsigned int n, char *base)
 	}
 }
 
-void    itoa_f(char *ret, long int nb, char *base)
+void		itoa_f(char *ret, long int nb, char *base)
 {
-    unsigned int    n;
-    int             size;
-    
-    if (nb < 0)
+	unsigned int	n;
+	int				size;
+
+	if (nb < 0)
 	{
 		n = -nb;
 		size = 1;
@@ -76,6 +76,6 @@ void    itoa_f(char *ret, long int nb, char *base)
 		n = nb;
 		size = 0;
 	}
-    size += what_pow(n, ft_strlen(base));
+	size += what_pow(n, ft_strlen(base));
 	fill_ret(size, ret, n, base);
 }

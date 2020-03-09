@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ede-thom <ede-thom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 20:36:20 by ede-thom          #+#    #+#             */
-/*   Updated: 2020/03/06 19:32:23 by marvin           ###   ########.fr       */
+/*   Updated: 2020/03/09 12:01:35 by ede-thom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void    ft_putstrf_fd(char *str, int fd)
+void	ft_putstrf_fd(char *str, int fd)
 {
-    if (str != NULL && fd != -2)
-        write(fd, str, ft_strlen(str));
+	if (str != NULL && fd != -2)
+		write(fd, str, ft_strlen(str));
 }
 
 int		ft_iswhitespace(char c)
@@ -28,7 +28,7 @@ int		ft_iswhitespace(char c)
 size_t	ft_strlen(char const *str)
 {
 	register char *cur;
-	
+
 	cur = (char *)str;
 	while (*cur)
 		cur++;
