@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_s.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ede-thom <ede-thom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 23:25:38 by ede-thom          #+#    #+#             */
-/*   Updated: 2020/03/06 20:38:22 by marvin           ###   ########.fr       */
+/*   Updated: 2020/03/07 01:08:07 by ede-thom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,21 @@ t_buff_manager  put_s(t_flag_mod flags, t_buff_manager man, va_list ap)
     if (ft_max(ft_strlen(s), flags.width) >= man.buf_size)
         return (big_conversion(man, flags, s));
     return (normal_conversion(man, flags, s));
+}
+
+t_buff_manager  put_c(t_flag_mod flags, t_buff_manager man, va_list ap)
+{
+    char c[2];
+
+    c[1] = '\0';
+    c[0] = (char)va_arg(ap, int);
+    if (flags.width == -1)
+        flags.width = va_arg(ap, int);
+    if (flags.precision == -1)
+        flags.precision= va_arg(ap, int);
+    if (man.buf_cur > man.buf_size - 1 || flags.width > man.buf_size - man.buf_cur)
+       man = ft_fflush(man);
+    if (flags.width > man.buf_size)
+        return (big_conversion(man, flags, c));
+    return (normal_conversion(man, flags, c));
 }

@@ -38,14 +38,17 @@ t_buff_manager  big_conversion(t_buff_manager man, t_flag_mod flags, char *str)
         return (man);
     to_print[size]= '\0';
     i = -1;
-    while (to_print[++i])
-        to_print[i] = pad;
+    while (i < flags.width)
+        to_print[i++] = pad;
     if (flags.left_adjust)
         size = ft_strlen(str);
     i = ft_strlen(str);
     while (*str)
         to_print[size - i--] = *(str++);
     ft_putstrf_fd(to_print, man.fd);
+    man.total_count += ft_strlen(to_print);
+    free(to_print);
+    man.buf_cur -= 1;
     return (man);
 }
 

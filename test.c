@@ -3,7 +3,8 @@
 
 int main (int argc, char **argv)
 {
-    printf   ("Hello This is a test for-%4097s printf!\n", "Hello");
-    ft_printf("Hello This is a test for-%4097s printf!\n", "Hello");
+    int a = printf   ("Hello This is a test for %02X printf!\n", "ff");
+    int b = ft_printf("Hello This is a test for %02X printf!\n", "ff");
+    printf("diffs rets |%d|%d|",a,b);
     return (0);
 }

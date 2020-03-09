@@ -15,11 +15,12 @@
 
 # include <stdarg.h>
 # include <string.h>
-//# include <unistd.h>
+# include <unistd.h>
 # include <stdlib.h>
 
 # define FT_PRINTF_BUFF_SIZE 4096
 # define FT_PRINTF_PADDING 100
+# define NB_CHARACTER_MAX_WIDTH 12
 
 typedef struct  s_flag_mod
 {
@@ -46,6 +47,7 @@ int             ft_iswhitespace(char c);
 size_t          ft_strlen(const char *s);
 int	        ft_indexof(char needle, const char *hay);
 int		ft_max(int a, int b);
+void            itoa_f(char *ret, long int nb, char *base);
 
 t_buff_manager  ft_fflush(t_buff_manager man);
 int             ft_printf(const char *format, ...);
@@ -58,5 +60,9 @@ t_buff_manager  normal_conversion(t_buff_manager man, t_flag_mod flags, char *st
 
 t_buff_manager  put_c(t_flag_mod flags, t_buff_manager man, va_list ap);
 t_buff_manager  put_s(t_flag_mod flags, t_buff_manager man, va_list ap);
+t_buff_manager  put_d(t_flag_mod flags, t_buff_manager man, va_list ap);
+t_buff_manager  put_u(t_flag_mod flags, t_buff_manager man, va_list ap);
+t_buff_manager  put_x(t_flag_mod flags, t_buff_manager man, va_list ap);
+t_buff_manager  put_X(t_flag_mod flags, t_buff_manager man, va_list ap);
 
 #endif

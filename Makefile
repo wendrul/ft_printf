@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
+#    By: ede-thom <ede-thom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/16 17:26:10 by dhorvill          #+#    #+#              #
-#    Updated: 2020/03/06 20:34:30 by marvin           ###   ########.fr        #
+#    Updated: 2020/03/09 11:28:50 by ede-thom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,10 @@ SRCS		=	src/ft_printf.c\
 				src/read_flags.c\
 				src/utils.c\
 				src/common.c\
+				src/ft_itoa_f.c
 
-SRCS		+=	src/put_c.c\
-				src/put_s.c
+SRCS		+=	src/put_letters.c\
+				src/put_numbers.c\
 
 
 MKDIR_P		=	mkdir -p
