@@ -60,9 +60,11 @@ t_buff_manager  normal_conversion(t_buff_manager man, t_flag_mod flags, char *st
 
 t_buff_manager  put_c(t_flag_mod flags, t_buff_manager man, va_list ap);
 t_buff_manager  put_s(t_flag_mod flags, t_buff_manager man, va_list ap);
+t_buff_manager  put_p(t_flag_mod flags, t_buff_manager man, va_list ap);
 t_buff_manager  put_d(t_flag_mod flags, t_buff_manager man, va_list ap);
 t_buff_manager  put_u(t_flag_mod flags, t_buff_manager man, va_list ap);
 t_buff_manager  put_x(t_flag_mod flags, t_buff_manager man, va_list ap);
 t_buff_manager  put_X(t_flag_mod flags, t_buff_manager man, va_list ap);
+t_buff_manager  put_percent(t_flag_mod flags, t_buff_manager man, va_list ap);
 
 #endif

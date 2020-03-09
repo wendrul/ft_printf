@@ -6,13 +6,13 @@
 /*   By: ede-thom <ede-thom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 01:46:42 by ede-thom          #+#    #+#             */
-/*   Updated: 2020/03/09 12:04:04 by ede-thom         ###   ########.fr       */
+/*   Updated: 2020/03/09 13:10:42 by ede-thom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-long int	ft_pow(int nb, int pow)
+unsigned long int	ft_pow(unsigned long int nb, int pow)
 {
 	if (pow < 0)
 		return (0);
@@ -24,7 +24,7 @@ long int	ft_pow(int nb, int pow)
 		return (nb * ft_pow(nb, pow - 1));
 }
 
-static int	what_pow(unsigned int nb, int b)
+static int	what_pow(unsigned long int nb, int b)
 {
 	int			pow;
 
@@ -39,7 +39,7 @@ static int	what_pow(unsigned int nb, int b)
 	return (pow);
 }
 
-static void	fill_ret(int size, char *ret, unsigned int n, char *base)
+static void	fill_ret(int size, char *ret, unsigned long int n, char *base)
 {
 	int		i;
 	int		b;
@@ -63,7 +63,7 @@ static void	fill_ret(int size, char *ret, unsigned int n, char *base)
 
 void		itoa_f(char *ret, long int nb, char *base)
 {
-	unsigned int	n;
+	unsigned long int	n;
 	int				size;
 
 	if (nb < 0)

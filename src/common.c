@@ -23,6 +23,19 @@ t_buff_manager  ft_fflush(t_buff_manager man)
     return (man);
 }
 
+int     fill_of_char(char *ret, int quantity, char fill, int start)
+{
+    int i;
+
+    i = 0;
+    while (i < quantity)
+    {
+        ret[start + i] = fill;
+        i++;
+    }
+    return (i);
+}
+
 t_buff_manager  big_conversion(t_buff_manager man, t_flag_mod flags, char *str)
 {
     char    *to_print;
@@ -38,8 +51,7 @@ t_buff_manager  big_conversion(t_buff_manager man, t_flag_mod flags, char *str)
         return (man);
     to_print[size]= '\0';
     i = -1;
-    while (i < flags.width)
-        to_print[i++] = pad;
+    fill_of_char(to_print, flags.width, pad, 0);
     if (flags.left_adjust)
         size = ft_strlen(str);
     i = ft_strlen(str);
@@ -63,11 +75,7 @@ t_buff_manager  normal_conversion(t_buff_manager man, t_flag_mod flags, char *st
     pad = ' ';
     if (flags.zero_padding)
         pad = '0';
-    while (i < flags.width)
-    {
-        man.buf[man.buf_cur + i] = pad;
-        i++;
-    }
+    i = fill_of_char(man.buf, flags.width, pad, man.buf_cur);
     actual_width = ft_max(flags.width, ft_strlen(str));
     end_cursor = actual_width;
     if (flags.left_adjust)

@@ -16,13 +16,13 @@ void    declare_put_functions(t_put_func *put_funcs)
 {
     put_funcs[0] = put_c; /*c*/
     put_funcs[1] = put_s; /*s*/
-    put_funcs[2] = NULL; /*p*/
+    put_funcs[2] = put_p; /*p*/
     put_funcs[3] = put_d; /*d*/
     put_funcs[4] = put_d; /*i*/
     put_funcs[5] = put_u; /*u*/
     put_funcs[6] = put_x; /*x*/
     put_funcs[7] = put_X; /*X*/
-    put_funcs[8] = NULL; /*%*/
+    put_funcs[8] = put_percent; /*%*/
 }
 
 int     read_format(t_buff_manager man, const char *format, va_list ap)
