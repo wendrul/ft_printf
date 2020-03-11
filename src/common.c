@@ -12,6 +12,8 @@
 
 #include "ft_printf.h"
 
+
+
 t_buff_manager  ft_fflush(t_buff_manager man)
 {
     if (man.buf[man.buf_cur] == '\n')
@@ -23,7 +25,18 @@ t_buff_manager  ft_fflush(t_buff_manager man)
     return (man);
 }
 
-int     fill_of_char(char *ret, int quantity, char fill, int start)
+int  ft_max_of3(int a, int b, int c)
+{
+    int max;
+    max = a;
+    if (max < b)
+        max = b;
+    if (max < c)
+        max = c;
+    return (max);
+}
+
+static int     fill_of_char(char *ret, int quantity, char fill, int start)
 {
     int i;
 
@@ -39,24 +52,22 @@ int     fill_of_char(char *ret, int quantity, char fill, int start)
 t_buff_manager  big_conversion(t_buff_manager man, t_flag_mod flags, char *str)
 {
     char    *to_print;
-    int     size;
+    int     actual_width;
+    int     end_cursor;
     int     i;
     char    pad;
 
-    pad = ' ';
-    if (flags.zero_padding)
-        pad = '0';
-    size = ft_max(ft_strlen(str), flags.width);
-    if (!(to_print = (char*)malloc(sizeof(char) * (size + 1))))
+    pad = flags.zero_padding ? '0' : ' ';
+    actual_width = ft_max_of3(ft_strlen(str), flags.width, flags.precision);
+    if (!(to_print = (char*)malloc(sizeof(char) * (actual_width + 1))))
         return (man);
-    to_print[size]= '\0';
-    i = -1;
+    to_print[actual_width]= '\0';
     fill_of_char(to_print, flags.width, pad, 0);
     if (flags.left_adjust)
-        size = ft_strlen(str);
-    i = ft_strlen(str);
-    while (*str)
-        to_print[size - i--] = *(str++);
+        end_cursor = ft_max(ft_strlen(str), flags.precision);
+    i = ft_strlen(str) - 1;
+    while (i >= 0)
+        to_print[--end_cursor] = str[i--];
     ft_putstrf_fd(to_print, man.fd);
     man.total_count += ft_strlen(to_print);
     free(to_print);
@@ -66,25 +77,22 @@ t_buff_manager  big_conversion(t_buff_manager man, t_flag_mod flags, char *str)
 
 t_buff_manager  normal_conversion(t_buff_manager man, t_flag_mod flags, char *str)
 {
-    int     i;
+    
     char    pad;
     int     actual_width;
     int     end_cursor;
+    int     i;
 
-    i = 0;
-    pad = ' ';
-    if (flags.zero_padding)
-        pad = '0';
-    i = fill_of_char(man.buf, flags.width, pad, man.buf_cur);
-    actual_width = ft_max(flags.width, ft_strlen(str));
+    pad = flags.zero_padding ? '0' : ' ';
+    actual_width = ft_max_of3(ft_strlen(str), flags.width, flags.precision);
+    fill_of_char(man.buf, flags.width, pad, man.buf_cur);
     end_cursor = actual_width;
     if (flags.left_adjust)
-        end_cursor = ft_strlen(str);
-    i = ft_strlen(str);
-    while (*str)
-    {
-        man.buf[man.buf_cur + end_cursor - i--] = *(str++);
-    }
+        end_cursor = ft_max(ft_strlen(str), flags.precision);
+    fill_of_char(man.buf, flags.precision, '0', man.buf_cur + end_cursor - flags.precision);
+    i = ft_strlen(str) - 1;
+    while (i >= 0)
+        man.buf[man.buf_cur + --end_cursor] = str[i--];
     man.buf_cur += actual_width - 1;
     return (man);
 }

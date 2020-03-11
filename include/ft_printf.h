@@ -20,7 +20,7 @@
 
 # define FT_PRINTF_BUFF_SIZE 4096
 # define FT_PRINTF_PADDING 100
-# define NB_CHARACTER_MAX_WIDTH 12
+# define NB_MAX_WIDTH 12
 
 typedef struct  s_flag_mod
 {
@@ -47,16 +47,16 @@ int             ft_iswhitespace(char c);
 size_t          ft_strlen(const char *s);
 int	        ft_indexof(char needle, const char *hay);
 int		ft_max(int a, int b);
+int             ft_max_of3(int a, int b, int c);
 void            itoa_f(char *ret, long int nb, char *base);
 
-t_buff_manager  ft_fflush(t_buff_manager man);
 int             ft_printf(const char *format, ...);
 int             read_format(t_buff_manager man, const char *format, va_list ap);
 void            ft_putstrf_fd(char *str, int fd);
 t_buff_manager  read_flags(const char *format, t_buff_manager man, va_list ap, t_put_func *put_funcs);
 t_buff_manager  big_conversion(t_buff_manager man, t_flag_mod flags, char *str);
 t_buff_manager  normal_conversion(t_buff_manager man, t_flag_mod flags, char *str);
-
+t_buff_manager  ft_fflush(t_buff_manager man);
 
 t_buff_manager  put_c(t_flag_mod flags, t_buff_manager man, va_list ap);
 t_buff_manager  put_s(t_flag_mod flags, t_buff_manager man, va_list ap);
