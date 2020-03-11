@@ -6,11 +6,11 @@
 /*   By: ede-thom <ede-thom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 20:36:20 by ede-thom          #+#    #+#             */
-/*   Updated: 2020/03/09 12:43:53 by ede-thom         ###   ########.fr       */
+/*   Updated: 2020/03/11 23:51:14 by ede-thom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libftprintf.h"
 
 void	ft_putstrf_fd(char *str, int fd)
 {

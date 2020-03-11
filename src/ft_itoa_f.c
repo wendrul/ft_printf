@@ -6,11 +6,11 @@
 /*   By: ede-thom <ede-thom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 01:46:42 by ede-thom          #+#    #+#             */
-/*   Updated: 2020/03/09 13:10:42 by ede-thom         ###   ########.fr       */
+/*   Updated: 2020/03/11 23:51:16 by ede-thom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libftprintf.h"
 
 unsigned long int	ft_pow(unsigned long int nb, int pow)
 {

@@ -6,11 +6,11 @@
 /*   By: ede-thom <ede-thom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 01:09:06 by ede-thom          #+#    #+#             */
-/*   Updated: 2020/03/11 22:34:52 by ede-thom         ###   ########.fr       */
+/*   Updated: 2020/03/11 23:51:19 by ede-thom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libftprintf.h"
 
 t_buff_manager  put_d(t_flag_mod flags, t_buff_manager man, va_list ap)
 {

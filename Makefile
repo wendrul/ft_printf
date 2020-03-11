@@ -6,7 +6,7 @@
 #    By: ede-thom <ede-thom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/16 17:26:10 by dhorvill          #+#    #+#              #
-#    Updated: 2020/03/09 11:28:50 by ede-thom         ###   ########.fr        #
+#    Updated: 2020/03/11 23:53:42 by ede-thom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ LFT_RULE	=	$(LFT_PATH)/$(LFT_NAME)
 
 OBJS		=	$(patsubst src/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 LIB			=	$(LFT_LIB) $(LSDL_LIB) 
-INC			=	-I $(INC_DIR) $(LFT_INC)
+INC			=	-I $(INC_DIR)
 
 # COLORS
 RED			=	\033[0;31m
@@ -56,7 +56,7 @@ CYAN		=	\033[0;36m
 RESET		=	\033[0m
 # **************************************************************************** #
 CFLAGS		=	-Wall -Wextra -Werror
-ARFLAGS		=	-crs
+ARFLAGS		=	rc
 
 CC			=	gcc
 AR			=	ar
@@ -71,7 +71,7 @@ $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c $(INC_DIR)/
 
 $(NAME):		$(OBJS)
 				@printf "$(CYAN)Done creating $(NAME) object files!\n$(RESET)"
-				$(AR) $(ARFLAGS) $(NAME) $(OBJS)
+				@$(AR) $(ARFLAGS) $(NAME) $(OBJS)
 				@echo "$(CYAN)Created $(GREEN)$(NAME)$(CYAN)!! $(RESET)"
 
 $(LFT_RULE):
@@ -79,7 +79,8 @@ $(LFT_RULE):
 
 clean: 
 				@${RM} ${OBJS}
-				@rmdir $(OBJ_DIR)
+				@$(MKDIR_P) $(OBJ_DIR)
+				@rmdir -p $(OBJ_DIR)
 				@echo "$(CYAN)TIDY UP $(RED)pls$(RESET)"
 
 fclean:			clean
@@ -89,7 +90,7 @@ fclean:			clean
 re:				fclean all
 
 test:			all
-				$(CC) test.c  $(OBJS) -I$(INC_DIR)
+				$(CC) test.c  $(OBJS) -I$(INC_DIR) -L. -lftprintf 
 
 together:		all
 				@echo "$(CYAN)"
