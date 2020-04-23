@@ -47,6 +47,6 @@ int     read_format(t_buff_manager man, const char *format, va_list ap)
         }
     }
     man.buf[man.buf_cur + 1] = '\0';
-    ft_putstrf_fd(man.buf, man.fd);
+    ft_putstrf_fd(man.buf, man.fd, man.buf_cur);
     return (man.total_count + man.buf_cur + 1);
 }
