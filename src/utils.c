@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ede-thom <ede-thom@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 20:36:20 by ede-thom          #+#    #+#             */
-/*   Updated: 2020/03/11 23:51:14 by ede-thom         ###   ########.fr       */
+/*   Updated: 2020/04/23 14:38:43 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void	ft_putstrf_fd(char *str, int fd)
+void	ft_putstrf_fd(char *str, int fd, size_t size)
 {
 	if (str != NULL && fd != -2)
-		write(fd, str, ft_strlen(str));
+		write(fd, str, size);
 }
 
 int		ft_iswhitespace(char c)

@@ -15,7 +15,7 @@
 
 # include <stdarg.h>
 # include <string.h>
-# include <unistd.h>
+//# include <unistd.h>
 # include <stdlib.h>
 
 # define FT_PRINTF_BUFF_SIZE 4096
@@ -42,7 +42,7 @@ typedef struct  s_buff_manager
 
 typedef t_buff_manager (*t_put_func)(t_flag_mod, t_buff_manager, va_list ap);
 
-void            ft_putstrf_fd(char *str, int fd);
+void            ft_putstrf_fd(char *str, int fd, size_t size);
 int             ft_iswhitespace(char c);
 size_t          ft_strlen(const char *s);
 int	        ft_indexof(char needle, const char *hay);
@@ -52,7 +52,6 @@ void            itoa_f(char *ret, long int nb, char *base);
 
 int             ft_printf(const char *format, ...);
 int             read_format(t_buff_manager man, const char *format, va_list ap);
-void            ft_putstrf_fd(char *str, int fd);
 t_buff_manager  read_flags(const char *format, t_buff_manager man, va_list ap, t_put_func *put_funcs);
 t_buff_manager  big_conversion(t_buff_manager man, t_flag_mod flags, char *str);
 t_buff_manager  normal_conversion(t_buff_manager man, t_flag_mod flags, char *str);

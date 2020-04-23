@@ -20,8 +20,8 @@ t_buff_manager  ft_fflush(t_buff_manager man)
         man.buf_cur++;
     man.total_count += man.buf_cur;
     man.buf[man.buf_cur] = '\0';
+    ft_putstrf_fd(man.buf, man.fd, man.buf_cur);
     man.buf_cur = 0;
-    ft_putstrf_fd(man.buf, man.fd);
     return (man);
 }
 
@@ -68,7 +68,7 @@ t_buff_manager  big_conversion(t_buff_manager man, t_flag_mod flags, char *str)
     i = ft_strlen(str) - 1;
     while (i >= 0)
         to_print[--end_cursor] = str[i--];
-    ft_putstrf_fd(to_print, man.fd);
+    ft_putstrf_fd(to_print, man.fd, ft_strlen(to_print));
     man.total_count += ft_strlen(to_print);
     free(to_print);
     man.buf_cur -= 1;
