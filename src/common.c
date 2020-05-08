@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+#include <stdio.h>
 
 
 t_buff_manager  ft_fflush(t_buff_manager man)
@@ -34,66 +35,79 @@ int  ft_max_of3(int a, int b, int c)
     return (max);
 }
 
-static int     fill_of_char(char *ret, int quantity, char fill, int start)
+t_fstring	ztr(char *str, long size)
 {
-    int i;
+	t_fstring string;
 
-    i = 0;
-    while (i < quantity)
-    {
-        ret[start + i] = fill;
-        i++;
-    }
-    return (i);
+	string.str = str;
+	string.size = size;
+	return (string);
 }
-
-t_buff_manager  big_conversion(t_buff_manager man, t_flag_mod flags, char *str, size_t str_size)
-{
-    char    *to_print;
-    int     actual_width;
-    int     end_cursor;
-    int     i;
-    char    pad;
-
-    pad = flags.zero_padding ? '0' : ' ';
-    actual_width = ft_max_of3(str_size, flags.width, flags.precision);
-    if (!(to_print = (char*)malloc(sizeof(char) * (actual_width + 1))))
-        return (man);
-    to_print[actual_width]= '\0';
-    fill_of_char(to_print, flags.width, pad, 0);
-    if (flags.left_adjust)
-        end_cursor = ft_max(str_size, flags.precision);
-    i = str_size - 1;
-    while (i >= 0)
-        to_print[--end_cursor] = str[i--];
-    ft_putstrf_fd(to_print, man.fd, ft_strlen(to_print));
-    man.total_count += ft_strlen(to_print); //strlen may not work if characters are \0
-    free(to_print);
-    man.buf_cur -= 1;
-    return (man);
-}
-
-t_buff_manager  normal_conversion(t_buff_manager man, t_flag_mod flags, char *str, size_t str_size)
-{
-    
-    char    pad;
-    int     actual_width;
-    int     end_cursor;
-    int     i;
-
-    pad = flags.zero_padding ? '0' : ' ';
-    actual_width = ft_max_of3(str_size, flags.width, flags.precision);
-    fill_of_char(man.buf, flags.width, pad, man.buf_cur);
-    end_cursor = actual_width;
-    if (flags.left_adjust)
-        end_cursor = ft_max(str_size, flags.precision);
-    fill_of_char(man.buf, flags.precision, '0', man.buf_cur + end_cursor - flags.precision);
-    i = str_size - 1;
-    while (i >= 0)
-        man.buf[man.buf_cur + --end_cursor] = str[i--];
-    man.buf_cur += actual_width - 1;
-    return (man);
-}
-
 
 //todo make new normal_conversion that removes the need for big_conversion
+
+t_buff_manager  conversion(t_buff_manager man, t_flag_mod flags, t_fstring str, t_fstring prefix)
+{
+    char pad;
+    long actual_width;
+    long i;
+    long checkpoints[2];
+
+    i = 0;
+    checkpoints[0] = 0;
+    checkpoints[1] = 0;
+    actual_width = ft_max_of3(str.size, flags.width, flags.precision);
+    pad = flags.zero_padding ? '0' : ' ';
+    while (1)
+    {
+        if (man.fd != -2 && man.buf_cur >= man.buf_size)
+            man = ft_fflush(man);
+        if (flags.left_adjust)
+        {
+            if (i < prefix.size)
+            {
+                man.buf[man.buf_cur] = prefix.str[i];
+            }
+            else if (i < prefix.size + flags.precision - str.size)
+            {
+                man.buf[man.buf_cur] = '0';
+                checkpoints[0] = i;
+            }
+            else if (i < prefix.size + ft_max(flags.precision, str.size))
+                man.buf[man.buf_cur] = str.str[i - checkpoints[0]];
+            else if (i < flags.width + prefix.size)  //if prefix is - do width++
+                man.buf[man.buf_cur] = pad;
+            else
+                break;
+        }
+        else
+        {
+            if (i < flags.width - (ft_max(str.size, flags.precision) + prefix.size))
+            {
+                man.buf[man.buf_cur] = pad;
+                checkpoints[0] = i;
+                checkpoints[1] = i + prefix.size;
+            }
+            else if (i < checkpoints[0] + prefix.size)
+                man.buf[man.buf_cur] = prefix.str[i - checkpoints[0]];
+            else if (i < actual_width - str.size)
+            {
+                man.buf[man.buf_cur] = '0';
+                checkpoints[1] = i;
+            }
+            else if (i < actual_width)
+                man.buf[man.buf_cur] = str.str[i - checkpoints[1]];
+            else
+                break;
+            
+        }
+        i++;
+        man.buf_cur++;
+    }
+    if (actual_width != 0)
+        man.buf_cur--;
+    return (man);
+}
+
+
+//negative pointers?

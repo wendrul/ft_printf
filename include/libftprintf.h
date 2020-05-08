@@ -40,7 +40,17 @@ typedef struct  s_buff_manager
         int     buf_size;
 }               t_buff_manager;
 
+typedef struct  s_fstring
+{
+        long size;
+        char *str;
+}               t_fstring;
+
+
+
 typedef t_buff_manager (*t_put_func)(t_flag_mod, t_buff_manager, va_list ap);
+
+t_fstring	ztr(char *str, long size);
 
 void            ft_putstrf_fd(char *str, int fd, size_t size);
 int             ft_iswhitespace(char c);
@@ -48,13 +58,13 @@ size_t          ft_strlen(const char *s);
 int	        ft_indexof(char needle, const char *hay);
 int		ft_max(int a, int b);
 int             ft_max_of3(int a, int b, int c);
+
 void            itoa_f(char *ret, long int nb, char *base);
 
 int             ft_printf(const char *format, ...);
 int             read_format(t_buff_manager man, const char *format, va_list ap);
 t_buff_manager  read_flags(const char *format, t_buff_manager man, va_list ap, t_put_func *put_funcs);
-t_buff_manager  big_conversion(t_buff_manager man, t_flag_mod flags, char *str, size_t str_size);
-t_buff_manager  normal_conversion(t_buff_manager man, t_flag_mod flags, char *str, size_t str_size);
+t_buff_manager  conversion(t_buff_manager man, t_flag_mod flags, t_fstring str, t_fstring prefix);
 t_buff_manager  ft_fflush(t_buff_manager man);
 
 t_buff_manager  put_c(t_flag_mod flags, t_buff_manager man, va_list ap);
