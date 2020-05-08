@@ -21,7 +21,7 @@ t_buff_manager  ft_fflush(t_buff_manager man)
     man.total_count += man.buf_cur;
     man.buf[man.buf_cur] = '\0';
     ft_putstrf_fd(man.buf, man.fd, man.buf_cur);
-    man.buf_cur = 0;
+    man.buf_cur = -1;
     return (man);
 }
 

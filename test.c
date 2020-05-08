@@ -5,8 +5,9 @@ int main (int argc, char **argv)
 {
     char *p = "aaaa";
 
-    int a = printf   ("%c%c%c%c%c%c%c\n", 'p', 0, 'c', 'd', 'e', 'f', 'g');
-    int b = ft_printf("%c%c%c%c%c%c%c\n", 'f', 0, 'c', 'd', 'e', 'f', 'g');
+    char *s = "hey \n there is a newline";
+    int a = printf   ("-%c%c-", (char)10, (char)11);
+    int b = ft_printf("-%c%c-", (char)10, (char)11);
     printf("difference in returns:  |%d|%d|\n", a, b);
     return (0);
 }
