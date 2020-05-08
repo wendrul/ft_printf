@@ -11,15 +11,12 @@
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-
+#include <stdio.h>
 
 
 t_buff_manager  ft_fflush(t_buff_manager man)
 {
-    if (man.buf[man.buf_cur] == '\n')
-        man.buf_cur++;
     man.total_count += man.buf_cur;
-    man.buf[man.buf_cur] = '\0';
     ft_putstrf_fd(man.buf, man.fd, man.buf_cur);
     man.buf_cur = -1;
     return (man);
