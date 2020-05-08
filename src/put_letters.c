@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_letters.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ede-thom <ede-thom@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 23:25:38 by ede-thom          #+#    #+#             */
-/*   Updated: 2020/03/11 23:51:18 by ede-thom         ###   ########.fr       */
+/*   Updated: 2020/05/08 11:35:41 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ t_buff_manager  put_s(t_flag_mod flags, t_buff_manager man, va_list ap)
     if ((int)ft_strlen(s) > man.buf_size - man.buf_cur || flags.width > man.buf_size - man.buf_cur)
        man = ft_fflush(man);
     if (ft_max(ft_strlen(s), flags.width) >= man.buf_size)
-        return (big_conversion(man, flags, s));
-    return (normal_conversion(man, flags, s));
+        return (big_conversion(man, flags, s, ft_strlen(s)));
+    return (normal_conversion(man, flags, s, ft_strlen(s)));
 }
 
 t_buff_manager  put_c(t_flag_mod flags, t_buff_manager man, va_list ap)
@@ -46,8 +46,8 @@ t_buff_manager  put_c(t_flag_mod flags, t_buff_manager man, va_list ap)
     if (man.buf_cur > man.buf_size - 1 || flags.width > man.buf_size - man.buf_cur)
        man = ft_fflush(man);
     if (flags.width > man.buf_size)
-        return (big_conversion(man, flags, c));
-    return (normal_conversion(man, flags, c));
+        return (big_conversion(man, flags, c, 1));
+    return (normal_conversion(man, flags, c, 1));
 }
 
 t_buff_manager  put_percent(t_flag_mod flags, t_buff_manager man, va_list ap)
@@ -63,6 +63,6 @@ t_buff_manager  put_percent(t_flag_mod flags, t_buff_manager man, va_list ap)
     if (man.buf_cur > man.buf_size - 1 || flags.width > man.buf_size - man.buf_cur)
        man = ft_fflush(man);
     if (flags.width > man.buf_size)
-        return (big_conversion(man, flags, c));
-    return (normal_conversion(man, flags, c));
+        return (big_conversion(man, flags, c, 1));
+    return (normal_conversion(man, flags, c, 1));
 }

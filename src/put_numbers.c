@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_numbers.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ede-thom <ede-thom@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 01:09:06 by ede-thom          #+#    #+#             */
-/*   Updated: 2020/03/11 23:51:19 by ede-thom         ###   ########.fr       */
+/*   Updated: 2020/05/08 11:36:48 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ t_buff_manager  put_d(t_flag_mod flags, t_buff_manager man, va_list ap)
         > man.buf_size - man.buf_cur)
         man = ft_fflush(man);
     if (ft_max(flags.width, flags.precision) > man.buf_size)
-        return (big_conversion(man, flags, nb_ascii));
-    return (normal_conversion(man, flags, nb_ascii));
+        return (big_conversion(man, flags, nb_ascii, ft_strlen(nb_ascii)));
+    return (normal_conversion(man, flags, nb_ascii, ft_strlen(nb_ascii)));
 }
 
 t_buff_manager  put_u(t_flag_mod flags, t_buff_manager man, va_list ap)
@@ -50,8 +50,8 @@ t_buff_manager  put_u(t_flag_mod flags, t_buff_manager man, va_list ap)
         > man.buf_size - man.buf_cur)
         man = ft_fflush(man);
     if (ft_max(flags.width, flags.precision) > man.buf_size)
-        return (big_conversion(man, flags, nb_ascii));
-    return (normal_conversion(man, flags, nb_ascii));
+        return (big_conversion(man, flags, nb_ascii, ft_strlen(nb_ascii)));
+    return (normal_conversion(man, flags, nb_ascii, ft_strlen(nb_ascii)));
 }
 
 t_buff_manager  put_x(t_flag_mod flags, t_buff_manager man, va_list ap)
@@ -71,8 +71,8 @@ t_buff_manager  put_x(t_flag_mod flags, t_buff_manager man, va_list ap)
         > man.buf_size - man.buf_cur)
         man = ft_fflush(man);
     if (ft_max(flags.width, flags.precision) > man.buf_size)
-        return (big_conversion(man, flags, nb_ascii));
-    return (normal_conversion(man, flags, nb_ascii));
+        return (big_conversion(man, flags, nb_ascii, ft_strlen(nb_ascii)));
+    return (normal_conversion(man, flags, nb_ascii, ft_strlen(nb_ascii)));
 }
 
 t_buff_manager  put_X(t_flag_mod flags, t_buff_manager man, va_list ap)
@@ -92,8 +92,8 @@ t_buff_manager  put_X(t_flag_mod flags, t_buff_manager man, va_list ap)
         > man.buf_size - man.buf_cur)
         man = ft_fflush(man);
     if (ft_max(flags.width, flags.precision) > man.buf_size)
-        return (big_conversion(man, flags, nb_ascii));
-    return (normal_conversion(man, flags, nb_ascii));
+        return (big_conversion(man, flags, nb_ascii, ft_strlen(nb_ascii)));
+    return (normal_conversion(man, flags, nb_ascii, ft_strlen(nb_ascii)));
 }
 
 t_buff_manager put_p(t_flag_mod flags, t_buff_manager man, va_list ap)
@@ -118,6 +118,6 @@ t_buff_manager put_p(t_flag_mod flags, t_buff_manager man, va_list ap)
         > man.buf_size - man.buf_cur)
         man = ft_fflush(man);
     if (ft_max(flags.width, flags.precision) > man.buf_size)
-        return (big_conversion(man, flags, ptr_ascii));
-    return (normal_conversion(man, flags, ptr_ascii));
+        return (big_conversion(man, flags, ptr_ascii, ft_strlen(ptr_ascii)));
+    return (normal_conversion(man, flags, ptr_ascii, ft_strlen(ptr_ascii)));
 }

@@ -53,8 +53,8 @@ void            itoa_f(char *ret, long int nb, char *base);
 int             ft_printf(const char *format, ...);
 int             read_format(t_buff_manager man, const char *format, va_list ap);
 t_buff_manager  read_flags(const char *format, t_buff_manager man, va_list ap, t_put_func *put_funcs);
-t_buff_manager  big_conversion(t_buff_manager man, t_flag_mod flags, char *str);
-t_buff_manager  normal_conversion(t_buff_manager man, t_flag_mod flags, char *str);
+t_buff_manager  big_conversion(t_buff_manager man, t_flag_mod flags, char *str, size_t str_size);
+t_buff_manager  normal_conversion(t_buff_manager man, t_flag_mod flags, char *str, size_t str_size);
 t_buff_manager  ft_fflush(t_buff_manager man);
 
 t_buff_manager  put_c(t_flag_mod flags, t_buff_manager man, va_list ap);

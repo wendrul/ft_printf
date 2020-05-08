@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 20:36:20 by ede-thom          #+#    #+#             */
-/*   Updated: 2020/04/23 14:38:43 by marvin           ###   ########.fr       */
+/*   Updated: 2020/05/08 11:19:50 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_putstrf_fd(char *str, int fd, size_t size)
 {
 	if (str != NULL && fd != -2)
-		write(fd, str, size);
+		write(fd, str, size + 1);
 }
 
 int		ft_iswhitespace(char c)

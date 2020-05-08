@@ -49,7 +49,7 @@ static int     fill_of_char(char *ret, int quantity, char fill, int start)
     return (i);
 }
 
-t_buff_manager  big_conversion(t_buff_manager man, t_flag_mod flags, char *str)
+t_buff_manager  big_conversion(t_buff_manager man, t_flag_mod flags, char *str, size_t str_size)
 {
     char    *to_print;
     int     actual_width;
@@ -58,24 +58,24 @@ t_buff_manager  big_conversion(t_buff_manager man, t_flag_mod flags, char *str)
     char    pad;
 
     pad = flags.zero_padding ? '0' : ' ';
-    actual_width = ft_max_of3(ft_strlen(str), flags.width, flags.precision);
+    actual_width = ft_max_of3(str_size, flags.width, flags.precision);
     if (!(to_print = (char*)malloc(sizeof(char) * (actual_width + 1))))
         return (man);
     to_print[actual_width]= '\0';
     fill_of_char(to_print, flags.width, pad, 0);
     if (flags.left_adjust)
-        end_cursor = ft_max(ft_strlen(str), flags.precision);
-    i = ft_strlen(str) - 1;
+        end_cursor = ft_max(str_size, flags.precision);
+    i = str_size - 1;
     while (i >= 0)
         to_print[--end_cursor] = str[i--];
     ft_putstrf_fd(to_print, man.fd, ft_strlen(to_print));
-    man.total_count += ft_strlen(to_print);
+    man.total_count += ft_strlen(to_print); //strlen may not work if characters are \0
     free(to_print);
     man.buf_cur -= 1;
     return (man);
 }
 
-t_buff_manager  normal_conversion(t_buff_manager man, t_flag_mod flags, char *str)
+t_buff_manager  normal_conversion(t_buff_manager man, t_flag_mod flags, char *str, size_t str_size)
 {
     
     char    pad;
@@ -84,15 +84,18 @@ t_buff_manager  normal_conversion(t_buff_manager man, t_flag_mod flags, char *st
     int     i;
 
     pad = flags.zero_padding ? '0' : ' ';
-    actual_width = ft_max_of3(ft_strlen(str), flags.width, flags.precision);
+    actual_width = ft_max_of3(str_size, flags.width, flags.precision);
     fill_of_char(man.buf, flags.width, pad, man.buf_cur);
     end_cursor = actual_width;
     if (flags.left_adjust)
-        end_cursor = ft_max(ft_strlen(str), flags.precision);
+        end_cursor = ft_max(str_size, flags.precision);
     fill_of_char(man.buf, flags.precision, '0', man.buf_cur + end_cursor - flags.precision);
-    i = ft_strlen(str) - 1;
+    i = str_size - 1;
     while (i >= 0)
         man.buf[man.buf_cur + --end_cursor] = str[i--];
     man.buf_cur += actual_width - 1;
     return (man);
 }
+
+
+//todo make new normal_conversion that removes the need for big_conversion
