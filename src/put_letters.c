@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 23:25:38 by ede-thom          #+#    #+#             */
-/*   Updated: 2020/05/09 15:17:28 by marvin           ###   ########.fr       */
+/*   Updated: 2020/05/09 16:30:17 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ t_buff_manager  put_s(t_flag_mod flags, t_buff_manager man, va_list ap)
     char    *s;
     long    len;
     
-    flags.zero_padding = 0;
     s = (char*)va_arg(ap, char*);
     if (flags.width == -1)
         flags.width = va_arg(ap, int);
