@@ -103,21 +103,20 @@ t_buff_manager  conversion(t_buff_manager man, t_flag_mod flags, t_fstring str, 
             }
             else if (i < checkpoints[0] + prefix.size)
                 man.buf[man.buf_cur] = prefix.str[i - checkpoints[0]];
-            else if (i < actual_width - (str.size + 0))
+            else if (i < actual_width - str.size)
             {
                 man.buf[man.buf_cur] = '0';
                 checkpoints[1] = i + 1;
             }
             else if (i < actual_width)
                 man.buf[man.buf_cur] = str.str[i - checkpoints[1]];
+
             else
                 break;
-            
         }
         i++;
         man.buf_cur++;
     }
-    if (actual_width != 0)
-        man.buf_cur--;
+    man.buf_cur--;
     return (man);
 }
