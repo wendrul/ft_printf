@@ -44,8 +44,6 @@ t_fstring	ztr(char *str, long size)
 	return (string);
 }
 
-//todo make new normal_conversion that removes the need for big_conversion
-
 t_buff_manager  conversion(t_buff_manager man, t_flag_mod flags, t_fstring str, t_fstring prefix)
 {
     char pad;
@@ -55,8 +53,8 @@ t_buff_manager  conversion(t_buff_manager man, t_flag_mod flags, t_fstring str, 
 
     i = 0;
     checkpoints[0] = 0;
-    checkpoints[1] = 0;
-    actual_width = ft_max_of3(str.size, flags.width, flags.precision);
+    checkpoints[1] = prefix.size;
+    actual_width = ft_max_of3(str.size + prefix.size, flags.width, flags.precision + prefix.size);
     pad = flags.zero_padding ? '0' : ' ';
     while (1)
     {
@@ -91,7 +89,7 @@ t_buff_manager  conversion(t_buff_manager man, t_flag_mod flags, t_fstring str, 
             }
             else if (i < checkpoints[0] + prefix.size)
                 man.buf[man.buf_cur] = prefix.str[i - checkpoints[0]];
-            else if (i < actual_width - str.size)
+            else if (i < actual_width - (str.size + 0))
             {
                 man.buf[man.buf_cur] = '0';
                 checkpoints[1] = i + 1;
@@ -109,6 +107,3 @@ t_buff_manager  conversion(t_buff_manager man, t_flag_mod flags, t_fstring str, 
         man.buf_cur--;
     return (man);
 }
-
-
-//negative pointers?
