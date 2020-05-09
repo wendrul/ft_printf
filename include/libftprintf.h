@@ -55,8 +55,8 @@ t_fstring	ztr(char *str, long size);
 void            ft_putstrf_fd(char *str, int fd, size_t size);
 int             ft_iswhitespace(char c);
 size_t          ft_strlen(const char *s);
-int	        ft_indexof(char needle, const char *hay);
-int		ft_max(int a, int b);
+int             ft_indexof(char needle, const char *hay);
+int             ft_max(int a, int b);
 int             ft_max_of3(int a, int b, int c);
 
 void            itoa_f(char *ret, long int nb, char *base);

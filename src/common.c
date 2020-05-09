@@ -67,15 +67,16 @@ t_buff_manager  conversion(t_buff_manager man, t_flag_mod flags, t_fstring str, 
             if (i < prefix.size)
             {
                 man.buf[man.buf_cur] = prefix.str[i];
+                checkpoints[0] = i + 1;
             }
             else if (i < prefix.size + flags.precision - str.size)
             {
                 man.buf[man.buf_cur] = '0';
-                checkpoints[0] = i;
+                checkpoints[0] = i + 1;
             }
             else if (i < prefix.size + ft_max(flags.precision, str.size))
                 man.buf[man.buf_cur] = str.str[i - checkpoints[0]];
-            else if (i < flags.width + prefix.size)  //if prefix is - do width++
+            else if (i < flags.width)  //if prefix is - do width++
                 man.buf[man.buf_cur] = pad;
             else
                 break;
@@ -85,15 +86,15 @@ t_buff_manager  conversion(t_buff_manager man, t_flag_mod flags, t_fstring str, 
             if (i < flags.width - (ft_max(str.size, flags.precision) + prefix.size))
             {
                 man.buf[man.buf_cur] = pad;
-                checkpoints[0] = i;
-                checkpoints[1] = i + prefix.size;
+                checkpoints[0] = i + 1;
+                checkpoints[1] = i + 1 + prefix.size;
             }
             else if (i < checkpoints[0] + prefix.size)
                 man.buf[man.buf_cur] = prefix.str[i - checkpoints[0]];
             else if (i < actual_width - str.size)
             {
                 man.buf[man.buf_cur] = '0';
-                checkpoints[1] = i;
+                checkpoints[1] = i + 1;
             }
             else if (i < actual_width)
                 man.buf[man.buf_cur] = str.str[i - checkpoints[1]];
