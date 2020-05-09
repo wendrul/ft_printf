@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 01:09:06 by ede-thom          #+#    #+#             */
-/*   Updated: 2020/05/09 17:30:24 by marvin           ###   ########.fr       */
+/*   Updated: 2020/05/09 17:36:43 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ t_buff_manager  put_d(t_flag_mod flags, t_buff_manager man, va_list ap)
     if (flags.precision == -1)
         flags.precision= va_arg(ap, int);
     itoa_f(n, nb, "0123456789");
-    flags.width += (sign == -1);
     p = n;
     if (flags.precision == 0)
         p = "";
