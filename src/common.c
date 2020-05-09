@@ -35,6 +35,20 @@ int  ft_max_of3(int a, int b, int c)
     return (max);
 }
 
+long ft_min_positive(long a, long b)
+{
+    if (b < 0 && a < 0)
+        return 0;
+    if (a < 0)
+        return b;
+    if (b < 0)
+        return a;
+    if (a < b)
+        return (a);
+    else
+        return (b);    
+}
+
 t_fstring	ztr(char *str, long size)
 {
 	t_fstring string;
@@ -74,7 +88,7 @@ t_buff_manager  conversion(t_buff_manager man, t_flag_mod flags, t_fstring str, 
             }
             else if (i < prefix.size + ft_max(flags.precision, str.size))
                 man.buf[man.buf_cur] = str.str[i - checkpoints[0]];
-            else if (i < flags.width)  //if prefix is - do width++
+            else if (i < flags.width)
                 man.buf[man.buf_cur] = pad;
             else
                 break;

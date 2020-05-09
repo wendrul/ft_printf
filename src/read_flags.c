@@ -39,8 +39,8 @@ t_buff_manager     read_flags(const char *format, t_buff_manager man, va_list ap
 
     flags.left_adjust = 0;
     flags.zero_padding = 0;
-    flags.precision = 0;
-    flags.width = 0;
+    flags.precision = -2;
+    flags.width = -2;
     man.buf_cur++;
     man.form_cur++;
     old_cursor = man.form_cur;

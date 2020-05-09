@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 23:25:38 by ede-thom          #+#    #+#             */
-/*   Updated: 2020/05/08 22:29:51 by marvin           ###   ########.fr       */
+/*   Updated: 2020/05/09 15:17:28 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 t_buff_manager  put_s(t_flag_mod flags, t_buff_manager man, va_list ap)
 {
     char    *s;
+    long    len;
     
     flags.zero_padding = 0;
-    flags.precision = 0;
     s = (char*)va_arg(ap, char*);
     if (flags.width == -1)
         flags.width = va_arg(ap, int);
@@ -25,7 +25,9 @@ t_buff_manager  put_s(t_flag_mod flags, t_buff_manager man, va_list ap)
         flags.precision= va_arg(ap, int);
     if (s == NULL)
         s = "(null)";
-    return (conversion(man, flags, ztr(s, ft_strlen(s)), ztr("", 0)));
+    len = ft_min_positive(ft_strlen(s), flags.precision);
+    flags.precision = 0;
+    return (conversion(man, flags, ztr(s, len), ztr("", 0)));
 }
 
 t_buff_manager  put_c(t_flag_mod flags, t_buff_manager man, va_list ap)
