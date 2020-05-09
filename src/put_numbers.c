@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 01:09:06 by ede-thom          #+#    #+#             */
-/*   Updated: 2020/05/09 17:20:44 by marvin           ###   ########.fr       */
+/*   Updated: 2020/05/09 17:30:24 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_buff_manager  put_d(t_flag_mod flags, t_buff_manager man, va_list ap)
     int         sign;
     long        nb;
     char        n[NB_MAX_WIDTH];
+    char        *p;
 
     nb = va_arg(ap, int);
     sign = 1;
@@ -34,15 +35,19 @@ t_buff_manager  put_d(t_flag_mod flags, t_buff_manager man, va_list ap)
         flags.precision= va_arg(ap, int);
     itoa_f(n, nb, "0123456789");
     flags.width += (sign == -1);
+    p = n;
+    if (flags.precision == 0)
+        p = "";
     if (sign == -1)
-        return (conversion(man, flags, ztr(n, ft_strlen(n)), ztr("-", 1)));
-    return (conversion(man, flags, ztr(n, ft_strlen(n)), ztr("", 0)));
+        return (conversion(man, flags, ztr(p, ft_strlen(p)), ztr("-", 1)));
+    return (conversion(man, flags, ztr(p, ft_strlen(p)), ztr("", 0)));
 }
 
 t_buff_manager  put_u(t_flag_mod flags, t_buff_manager man, va_list ap)
 {
     unsigned int    nb;
     char            n[NB_MAX_WIDTH];
+    char            *p;
 
     nb = va_arg(ap, unsigned int);
     if (flags.precision > 0)
@@ -52,13 +57,17 @@ t_buff_manager  put_u(t_flag_mod flags, t_buff_manager man, va_list ap)
     if (flags.precision == -1)
         flags.precision= va_arg(ap, int);
     itoa_f(n, nb, "0123456789");
-    return (conversion(man, flags, ztr(n, ft_strlen(n)), ztr("", 0)));
+    p = n;
+    if (flags.precision == 0)
+        p = "";
+    return (conversion(man, flags, ztr(p, ft_strlen(p)), ztr("", 0)));
 }
 
 t_buff_manager  put_x(t_flag_mod flags, t_buff_manager man, va_list ap)
 {
     unsigned int    nb;
     char            n[NB_MAX_WIDTH];
+    char            *p;
 
     nb = va_arg(ap, unsigned int);
     if (flags.precision > 0)
@@ -68,13 +77,17 @@ t_buff_manager  put_x(t_flag_mod flags, t_buff_manager man, va_list ap)
     if (flags.precision == -1)
         flags.precision= va_arg(ap, int);
     itoa_f(n, nb, "0123456789abcdef");
-    return (conversion(man, flags, ztr(n, ft_strlen(n)), ztr("", 0)));
+    p = n;
+    if (flags.precision == 0)
+        p = "";
+    return (conversion(man, flags, ztr(p, ft_strlen(p)), ztr("", 0)));
 }
 
 t_buff_manager  put_X(t_flag_mod flags, t_buff_manager man, va_list ap)
 {
     unsigned int    nb;
     char            n[NB_MAX_WIDTH];
+    char            *p;
 
     nb = va_arg(ap, unsigned int);
     if (flags.precision > 0)
@@ -84,10 +97,10 @@ t_buff_manager  put_X(t_flag_mod flags, t_buff_manager man, va_list ap)
     if (flags.precision == -1)
         flags.precision= va_arg(ap, int);
     itoa_f(n, nb, "0123456789ABCDEF");
-    if (ft_max_of3(flags.width, flags.precision, NB_MAX_WIDTH) 
-        > man.buf_size - man.buf_cur)
-        man = ft_fflush(man);
-    return (conversion(man, flags, ztr(n, ft_strlen(n)), ztr("", 0)));
+    p = n;
+    if (flags.precision == 0)
+        p = "";
+    return (conversion(man, flags, ztr(p, ft_strlen(p)), ztr("", 0)));
 }
 
 t_buff_manager put_p(t_flag_mod flags, t_buff_manager man, va_list ap)
