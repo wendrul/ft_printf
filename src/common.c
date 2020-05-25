@@ -95,6 +95,15 @@ t_buff_manager  conversion(t_buff_manager man, t_flag_mod flags, t_fstring str, 
         }
         else
         {
+            if (prefix.str[0] == '-' && pad == '0')
+            {
+                prefix.str++;
+                prefix.size--;
+                man.buf[man.buf_cur] = pad;
+            }
+
+
+
             if (i < flags.width - (ft_max(str.size, flags.precision) + prefix.size))
             {
                 man.buf[man.buf_cur] = pad;
