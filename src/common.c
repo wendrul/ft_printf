@@ -98,12 +98,9 @@ t_buff_manager  conversion(t_buff_manager man, t_flag_mod flags, t_fstring str, 
             if (prefix.str[0] == '-' && pad == '0')
             {
                 prefix.str++;
-                man.buf[man.buf_cur] = pad;
+                man.buf[man.buf_cur] = '-';
             }
-
-
-
-            if (i < flags.width - (ft_max(str.size, flags.precision) + prefix.size))
+            else if (i < flags.width - (ft_max(str.size, flags.precision) + prefix.size))
             {
                 man.buf[man.buf_cur] = pad;
                 checkpoints[0] = i + 1;
