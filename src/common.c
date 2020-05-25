@@ -98,7 +98,6 @@ t_buff_manager  conversion(t_buff_manager man, t_flag_mod flags, t_fstring str, 
             if (prefix.str[0] == '-' && pad == '0')
             {
                 prefix.str++;
-                prefix.size--;
                 man.buf[man.buf_cur] = pad;
             }
 
@@ -110,7 +109,7 @@ t_buff_manager  conversion(t_buff_manager man, t_flag_mod flags, t_fstring str, 
                 checkpoints[0] = i + 1;
                 checkpoints[1] = i + 1 + prefix.size;
             }
-            else if (i < checkpoints[0] + prefix.size)
+            else if (i < checkpoints[0] + prefix.size && prefix.str[0])
                 man.buf[man.buf_cur] = prefix.str[i - checkpoints[0]];
             else if (i < actual_width - str.size)
             {
