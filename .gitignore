@@ -3,3 +3,4 @@
 *.o
 .vscode/*
 obj/*
+*/common\ copy.c
