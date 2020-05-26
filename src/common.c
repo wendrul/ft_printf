@@ -79,9 +79,11 @@ t_buff_manager	conversion2(t_poub a)
 		}
 		else
 		{
-			a.p.str += a.p.str[0] == '-' && a.pad == '0';
 			if (a.p.str[0] == '-' && a.pad == '0')
+			{
+				a.p.str++;
 				a.man.buf[a.man.buf_cur] = '-';
+			}
 			else if (right_adjust(a, &a.man, a.cp))
 				break ;
 		}
