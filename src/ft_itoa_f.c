@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa_f.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ede-thom <ede-thom@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ede-thom <ede-thom@42.edu.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/07 01:46:42 by ede-thom          #+#    #+#             */
-/*   Updated: 2020/03/11 23:51:16 by ede-thom         ###   ########.fr       */
+/*   Created: 2020/05/26 13:25:40 by ede-thom          #+#    #+#             */
+/*   Updated: 2020/05/26 13:26:04 by ede-thom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ unsigned long int	ft_pow(unsigned long int nb, int pow)
 		return (nb * ft_pow(nb, pow - 1));
 }
 
-static int	what_pow(unsigned long int nb, int b)
+static int			what_pow(unsigned long int nb, int b)
 {
 	int			pow;
 
@@ -39,15 +39,15 @@ static int	what_pow(unsigned long int nb, int b)
 	return (pow);
 }
 
-static void	fill_ret(int size, char *ret, unsigned long int n, char *base)
+static void			fill_ret(int size, char *ret, unsigned long int n, char *b)
 {
 	int		i;
-	int		b;
+	int		blen;
 
-	b = ft_strlen(base);
+	blen = ft_strlen(b);
 	ret[size] = '\0';
 	i = 0;
-	if (size - what_pow(n, b) == 1 && size != 0)
+	if (size - what_pow(n, blen) == 1 && size != 0)
 	{
 		size--;
 		ret[i++] = '-';
@@ -55,16 +55,16 @@ static void	fill_ret(int size, char *ret, unsigned long int n, char *base)
 	while (size)
 	{
 		size--;
-		ret[i] = base[n / ft_pow(b, size)];
-		n = n % ft_pow(b, size);
+		ret[i] = b[n / ft_pow(blen, size)];
+		n = n % ft_pow(blen, size);
 		i++;
 	}
 }
 
-void		itoa_f(char *ret, long int nb, char *base)
+void				itoa_f(char *ret, long int nb, char *base)
 {
 	unsigned long int	n;
-	int				size;
+	int					size;
 
 	if (nb < 0)
 	{

@@ -24,40 +24,6 @@ t_buff_manager  ft_fflush(t_buff_manager man)
     return (man);
 }
 
-int  ft_max_of3(int a, int b, int c)
-{
-    int max;
-    max = a;
-    if (max < b)
-        max = b;
-    if (max < c)
-        max = c;
-    return (max);
-}
-
-long ft_min_positive(long a, long b)
-{
-    if (b < 0 && a < 0)
-        return 0;
-    if (a < 0)
-        return b;
-    if (b < 0)
-        return a;
-    if (a < b)
-        return (a);
-    else
-        return (b);    
-}
-
-t_fstring	ztr(char *str, long size)
-{
-	t_fstring string;
-
-	string.str = str;
-	string.size = size;
-	return (string);
-}
-
 t_buff_manager  conversion(t_buff_manager man, t_flag_mod flags, t_fstring str, t_fstring prefix)
 {
     char pad;

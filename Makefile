@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ede-thom <ede-thom@student.42.fr>          +#+  +:+       +#+         #
+#    By: ede-thom <ede-thom@42.edu.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/16 17:26:10 by dhorvill          #+#    #+#              #
-#    Updated: 2020/03/11 23:53:42 by ede-thom         ###   ########.fr        #
+#    Updated: 2020/05/26 13:45:45 by ede-thom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ SRCS		=	src/ft_printf.c\
 				src/read_format.c\
 				src/read_flags.c\
 				src/utils.c\
+				src/utils2.c\
 				src/common.c\
 				src/ft_itoa_f.c
 
@@ -90,7 +91,10 @@ fclean:			clean
 re:				fclean all
 
 test:			all
-				$(CC) test.c  $(OBJS) -I$(INC_DIR) -L. -lftprintf 
+				$(CC) test.c  $(OBJS) -I$(INC_DIR) -L. -lftprintf
+
+bonus:			all
+				@printf "who knows\n"
 
 together:		all
 				@echo "$(CYAN)"
