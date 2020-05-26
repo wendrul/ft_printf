@@ -54,6 +54,18 @@ typedef struct	s_norm_contain
 	char		chr;
 }				t_norm_contain;
 
+typedef	struct	s_poub
+{
+	char			pad;
+	long			awidth;
+	long			i;
+	long			cp[2];
+	t_buff_manager	man;
+	t_flag_mod		fl;
+	t_fstring		s;
+	t_fstring		p;
+}				t_poub;
+
 typedef t_buff_manager	(*t_put_func)(t_flag_mod, t_buff_manager, va_list);
 
 t_fstring		ztr(char *str, long size);

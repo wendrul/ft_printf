@@ -4,3 +4,4 @@
 .vscode/*
 obj/*
 */common\ copy.c
+ignore_code/*
