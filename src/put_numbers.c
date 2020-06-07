@@ -6,7 +6,7 @@
 /*   By: ede-thom <ede-thom@42.edu.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 01:09:06 by ede-thom          #+#    #+#             */
-/*   Updated: 2020/05/26 14:01:29 by ede-thom         ###   ########.fr       */
+/*   Updated: 2020/06/07 09:23:12 by ede-thom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@ t_buff_manager	put_d(t_flag_mod flags, t_buff_manager man, va_list ap)
 	char	n[NB_MAX_WIDTH];
 	char	*p;
 
+	if (flags.precision > 0)
+		flags.zero_padding = 0;
+	if (flags.width == -1)
+		flags.width = va_arg(ap, int);
+	if (flags.precision == -1)
+		flags.precision = va_arg(ap, int);
 	nb = va_arg(ap, int);
 	sign = 1;
 	if (nb < 0)
@@ -26,12 +32,6 @@ t_buff_manager	put_d(t_flag_mod flags, t_buff_manager man, va_list ap)
 		nb = -nb;
 		sign = -1;
 	}
-	if (flags.precision > 0)
-		flags.zero_padding = 0;
-	if (flags.width == -1)
-		flags.width = va_arg(ap, int);
-	if (flags.precision == -1)
-		flags.precision = va_arg(ap, int);
 	itoa_f(n, nb, "0123456789");
 	p = n;
 	if (flags.precision == 0)
@@ -47,13 +47,13 @@ t_buff_manager	put_u(t_flag_mod flags, t_buff_manager man, va_list ap)
 	char			n[NB_MAX_WIDTH];
 	char			*p;
 
-	nb = va_arg(ap, unsigned int);
 	if (flags.precision > 0)
 		flags.zero_padding = 0;
 	if (flags.width == -1)
 		flags.width = va_arg(ap, int);
 	if (flags.precision == -1)
 		flags.precision = va_arg(ap, int);
+	nb = va_arg(ap, unsigned int);
 	itoa_f(n, nb, "0123456789");
 	p = n;
 	if (flags.precision == 0)
@@ -67,13 +67,13 @@ t_buff_manager	put_x(t_flag_mod flags, t_buff_manager man, va_list ap)
 	char			n[NB_MAX_WIDTH];
 	char			*p;
 
-	nb = va_arg(ap, unsigned int);
 	if (flags.precision > 0)
 		flags.zero_padding = 0;
 	if (flags.width == -1)
 		flags.width = va_arg(ap, int);
 	if (flags.precision == -1)
 		flags.precision = va_arg(ap, int);
+	nb = va_arg(ap, unsigned int);
 	itoa_f(n, nb, "0123456789abcdef");
 	p = n;
 	if (flags.precision == 0)
@@ -87,13 +87,13 @@ t_buff_manager	put_up_x(t_flag_mod flags, t_buff_manager man, va_list ap)
 	char			n[NB_MAX_WIDTH];
 	char			*p;
 
-	nb = va_arg(ap, unsigned int);
 	if (flags.precision > 0)
 		flags.zero_padding = 0;
 	if (flags.width == -1)
 		flags.width = va_arg(ap, int);
 	if (flags.precision == -1)
 		flags.precision = va_arg(ap, int);
+	nb = va_arg(ap, unsigned int);
 	itoa_f(n, nb, "0123456789ABCDEF");
 	p = n;
 	if (flags.precision == 0)
@@ -108,14 +108,14 @@ t_buff_manager	put_p(t_flag_mod flags, t_buff_manager man, va_list ap)
 	char				p[NB_MAX_WIDTH];
 	char				*n;
 
-	ptr = va_arg(ap, void*);
-	nb = (unsigned long int)ptr;
 	if (flags.precision > 0)
 		flags.zero_padding = 0;
 	if (flags.width == -1)
 		flags.width = va_arg(ap, int);
 	if (flags.precision == -1)
 		flags.precision = va_arg(ap, int);
+	ptr = va_arg(ap, void*);
+	nb = (unsigned long int)ptr;
 	itoa_f(p, nb, "0123456789abcdef");
 	n = p;
 	if (flags.precision == 0)
