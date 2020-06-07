@@ -46,3 +46,10 @@ t_fstring	ztr(char *str, long size)
 	string.size = size;
 	return (string);
 }
+
+long		ft_arg_abs(long n)
+{
+	if (n < 0)
+		return -n;
+	return n;
+}

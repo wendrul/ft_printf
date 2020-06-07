@@ -79,6 +79,7 @@ long			ft_min_positive(long a, long b);
 int				ft_max_of3(int a, int b, int c);
 
 void			itoa_f(char *ret, long int nb, char *base);
+long			ft_arg_abs(long n);
 
 int				ft_printf(const char *format, ...);
 int				read_format(t_buff_manager man, const char *format, va_list ap);
