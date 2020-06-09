@@ -53,3 +53,21 @@ long		ft_arg_abs(long n)
 		return -n;
 	return n;
 }
+
+void		read_star_flag(t_flag_mod *flags_ptr, va_list ap)
+{
+	t_flag_mod flags;
+
+	flags = *flags_ptr;
+	if (flags.width == -1)
+		flags.width = va_arg(ap, int);
+	if (flags.precision == -1)
+		flags.precision = va_arg(ap, int);
+	if (flags.width < 0)
+	{
+		flags.left_adjust = 1;
+		flags.zero_padding = 0;
+		flags.width = -flags.width;
+	}
+	*flags_ptr = flags;
+}

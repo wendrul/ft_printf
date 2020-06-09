@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libftprintf.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ede-thom <ede-thom@42.edu.fr>              +#+  +:+       +#+        */
+/*   By: ede-thom <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/25 12:18:09 by ede-thom          #+#    #+#             */
-/*   Updated: 2020/05/25 12:18:09 by ede-thom         ###   ########.fr       */
+/*   Created: 2020/06/09 20:17:21 by ede-thom          #+#    #+#             */
+/*   Updated: 2020/06/09 20:17:24 by ede-thom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int				ft_max_of3(int a, int b, int c);
 
 void			itoa_f(char *ret, long int nb, char *base);
 long			ft_arg_abs(long n);
+void			read_star_flag(t_flag_mod *flags_ptr, va_list ap);
 
 int				ft_printf(const char *format, ...);
 int				read_format(t_buff_manager man, const char *format, va_list ap);

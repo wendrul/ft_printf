@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ede-thom <ede-thom@42.edu.fr>              +#+  +:+       +#+         #
+#    By: ede-thom <ede-thom@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/16 17:26:10 by dhorvill          #+#    #+#              #
-#    Updated: 2020/05/26 13:45:45 by ede-thom         ###   ########.fr        #
+#    Updated: 2020/06/09 20:13:01 by ede-thom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,7 +81,6 @@ $(LFT_RULE):
 clean: 
 				@${RM} ${OBJS}
 				@$(MKDIR_P) $(OBJ_DIR)
-				@rmdir -p $(OBJ_DIR)
 				@echo "$(CYAN)TIDY UP $(RED)pls$(RESET)"
 
 fclean:			clean
