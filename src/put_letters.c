@@ -6,7 +6,7 @@
 /*   By: ede-thom <ede-thom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 23:25:38 by ede-thom          #+#    #+#             */
-/*   Updated: 2020/06/09 20:10:43 by ede-thom         ###   ########.fr       */
+/*   Updated: 2020/06/09 20:33:03 by ede-thom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_buff_manager	put_s(t_flag_mod flags, t_buff_manager man, va_list ap)
 {
 	char *s;
 	long len;
-	
+
 	read_star_flag(&flags, ap);
 	s = (char*)va_arg(ap, char*);
 	if (s == NULL)

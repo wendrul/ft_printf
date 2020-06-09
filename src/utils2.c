@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ede-thom <ede-thom@42.edu.fr>              +#+  +:+       +#+        */
+/*   By: ede-thom <ede-thom@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/26 13:28:56 by ede-thom          #+#    #+#             */
-/*   Updated: 2020/05/26 13:28:56 by ede-thom         ###   ########.fr       */
+/*   Updated: 2020/06/09 20:34:10 by ede-thom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ t_fstring	ztr(char *str, long size)
 long		ft_arg_abs(long n)
 {
 	if (n < 0)
-		return -n;
-	return n;
+		return (-n);
+	return (n);
 }
 
 void		read_star_flag(t_flag_mod *flags_ptr, va_list ap)
